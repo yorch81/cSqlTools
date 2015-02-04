@@ -5,11 +5,11 @@ C:\Code\cSqlTools\cSqlTools\cSqlTools\bin\Debug\cSmo.pdb
 C:\Code\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.csprojResolveAssemblyReference.cache
 C:\Code\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.exe
 C:\Code\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.pdb
-C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.csprojResolveAssemblyReference.cache
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\bin\Debug\cSqlTools.exe
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\bin\Debug\cSqlTools.pdb
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\bin\Debug\cSmo.dll
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\bin\Debug\MySql.Data.dll
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\bin\Debug\cSmo.pdb
+C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.csprojResolveAssemblyReference.cache
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.exe
 C:\Code\cs\cSqlTools\cSqlTools\cSqlTools\obj\x86\Debug\cSqlTools.pdb
