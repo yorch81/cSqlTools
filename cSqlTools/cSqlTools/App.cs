@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using cSmo;
 
 namespace cSqlTools
 {
@@ -10,8 +9,17 @@ namespace cSqlTools
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("App");
-            cSmo.cSmo.test();
+            //Console.WriteLine("MSSQLSERVER");
+            //cSmo.cSmo smo = cSmo.cSmo.getInstance(cSmo.cSmo.MSSQLSERVER, "C:/TEMP/SQL/MSSQLSERVER/", "localhost", "sa", "r00t$ql", "MCS");
+            //smo.saveProcedures();
+            //smo.saveFunctions();
+            //smo.saveTables();
+
+            Console.WriteLine("MYSQL");
+            cSmo.cSmo smo = cSmo.cSmo.getInstance(cSmo.cSmo.MYSQL, "C:/TEMP/SQL/MYSQL/", "localhost", "root", "r00t$ql", "test");
+            smo.saveProcedures();
+            smo.saveFunctions();
+            smo.saveTables();
         }
     }
 }

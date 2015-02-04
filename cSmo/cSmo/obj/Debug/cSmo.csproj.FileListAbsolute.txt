@@ -7,3 +7,12 @@ C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.dll
 C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
 C:\Code\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
 C:\Code\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll.config
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.pdb
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
+C:\Code\cs\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
+C:\Code\cs\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb

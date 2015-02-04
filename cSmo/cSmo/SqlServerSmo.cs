@@ -6,6 +6,7 @@ using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System.IO;
 using System.Data;
+using System.Data.SqlClient;
 
 /**
  * SqlServerSmo 
@@ -50,13 +51,18 @@ namespace cSmo
         private string dbname = "";
 
         /// <summary>
+        /// SQL Native Connection
+        /// </summary>
+        private SqlConnection conn = null;
+
+        /// <summary>
         /// Constructor of Class
         /// </summary>
         /// <param name="baseDir">
         /// Base Directory to save SQL Scripts
         /// </param>
         /// <param name="serverName">
-        /// SQL Server DataBase name
+        /// SQL Server Name
         /// </param>
         /// <param name="userDb">
         /// User of SQL Server
@@ -69,11 +75,30 @@ namespace cSmo
         /// </param>
         public SqlServerSmo(string baseDir, string serverName, string userDb, string password, string dbName)
         {
+            // SMO Connection
             try
             {
                 basedir = baseDir;
                 dbname = dbName;
                 connection = new ServerConnection(serverName, userDb, password);
+            }
+            catch (Exception e)
+            {
+                connection = null;
+            }
+
+            // Native Connection
+            conn = new SqlConnection();
+            conn.ConnectionString = "Data Source=" + serverName + ";Initial Catalog=" + dbName + ";uid=" + userDb + ";pwd=" + password + ";";
+
+            try
+            {
+                conn.Open();
+
+                if (!(conn.State == ConnectionState.Open))
+                {
+                    conn = null;
+                }
             }
             catch (Exception e)
             {
@@ -354,7 +379,23 @@ namespace cSmo
         /// </returns>
         public override DataSet getDbList()
         {
-            return null;
+            if (conn != null)
+            {
+                String query = "SELECT sdb.name AS DBSCHEMAS FROM master..sysdatabases sdb ";
+                query += " WHERE sdb.name NOT IN ('master','model','msdb','pubs','northwind','tempdb')";
+                query += " ORDER BY sdb.name";
+
+                SqlCommand sqlCommand = new SqlCommand(query, conn);
+                SqlDataAdapter sqlAdapter = new SqlDataAdapter();
+                DataSet sqlDs = new DataSet();
+
+                sqlAdapter.SelectCommand = sqlCommand;
+                sqlAdapter.Fill(sqlDs);
+
+                return sqlDs;
+            }
+            else
+                return null;
         }
     }
 }
