@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace cSqlTools
 {
@@ -49,20 +50,34 @@ namespace cSqlTools
 
             int action = 0;
 
-            Console.Write("Enter Action (1 Save DDL Scripts 2 Encrypt Routines): ");
-            action = int.Parse(Console.ReadLine());
+            if (smo.isConnected())
+            {
+                Console.Write("Enter Action (1 Save DDL Scripts 2 Encrypt Routines): ");
+                action = int.Parse(Console.ReadLine());
 
-            if (action == 1)
-            {
-                smo.saveTables();
-                smo.saveProcedures();
-                smo.saveFunctions();
+                if (action == 1)
+                {
+                    if ((Directory.Exists(path)))
+                    {
+                        Console.WriteLine("Saving DDL Scripts on: " + path);
+                        smo.saveTables();
+                        smo.saveProcedures();
+                        smo.saveFunctions();
+                    }
+                    else
+                        Console.WriteLine("The Path not Exists");
+                }
+                else
+                {
+                    Console.WriteLine("Encrypting Routines of SQL Server (MySQL not Support)");
+                    smo.encryptProcedures();
+                    smo.encryptFunctions();
+                }
             }
-            else 
-            {
-                smo.encryptProcedures();
-                smo.encryptFunctions();
-            }
+            else
+                Console.WriteLine("Could not connect to DataBase Server");
+
+            Console.ReadKey();
         }
     }
 }
