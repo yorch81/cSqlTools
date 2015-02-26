@@ -8,6 +8,26 @@ using System.Threading.Tasks;
 using System.IO;
 using Nancy.Responses;
 
+/**
+ * myModule 
+ *
+ * myModule Web Application Module
+ *
+ * Copyright 2015 Jorge Alberto Ponce Turrubiates
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 namespace cSqlTools
 {
     /// <summary>
@@ -20,7 +40,6 @@ namespace cSqlTools
         /// </summary>
         public myModule()
         {
-           
             Get["/"] = parameters =>
             {
                 myConfig cfg = myConfig.getInstance();
@@ -35,35 +54,34 @@ namespace cSqlTools
                 }
             };
 
-            Post["/connect"] = parameters =>
+            Post["/dblist"] = parameters =>
             {
                 myConfig cfg = myConfig.getInstance();
 
+                int dbType = Request.Form.dbType;
                 string serverDb = Request.Form.serverDb;
                 string userDb = Request.Form.userDb;
                 string password = Request.Form.password;
-                string dbName = Request.Form.dbName;
 
+                cfg.dbType = dbType;
                 cfg.serverDb = serverDb;
                 cfg.userDb = userDb;
                 cfg.password = password;
-                cfg.dbName = dbName;
 
-                cSmo.cSmo smo = cSmo.cSmo.getInstance(cSmo.cSmo.MSSQLSERVER, cfg.path, serverDb, userDb, password, dbName);
-
-                if (smo.isConnected())
-                    return "Ok";
-                else
-                    return "Bad";
+                return myUtil.getDbListHtml(dbType, serverDb, userDb, password);
             };
 
             Post["/save"] = parameters =>
             {
                 myConfig cfg = myConfig.getInstance();
 
+                int dbType = Request.Form.dbType;
                 string dir = Request.Form.dir;
+                string dbName = Request.Form.dbName;
 
-                cSmo.cSmo smo = cSmo.cSmo.getInstance(cSmo.cSmo.MSSQLSERVER, cfg.path, cfg.serverDb, cfg.userDb, cfg.password, cfg.dbName);
+                cfg.dbName = dbName;
+
+                cSmo.cSmo smo = cSmo.cSmo.getInstance(dbType, cfg.path, cfg.serverDb, cfg.userDb, cfg.password, cfg.dbName);
 
                 if (smo.isConnected())
                 {
@@ -81,51 +99,29 @@ namespace cSqlTools
             {
                 myConfig cfg = myConfig.getInstance();
 
-                cSmo.cSmo smo = cSmo.cSmo.getInstance(cSmo.cSmo.MSSQLSERVER, cfg.path, cfg.serverDb, cfg.userDb, cfg.password, cfg.dbName);
+                int dbType = Request.Form.dbType;
+                string dbName = Request.Form.dbName;
 
-                if (smo.isConnected())
+                cfg.dbName = dbName;
+
+                if (dbType == cSmo.cSmo.MSSQLSERVER)
                 {
-                    smo.encryptProcedures();
-                    smo.encryptFunctions();
+                    cSmo.cSmo smo = cSmo.cSmo.getInstance(dbType, cfg.path, cfg.serverDb, cfg.userDb, cfg.password, cfg.dbName);
 
-                    return "Ok";
+                    if (smo.isConnected())
+                    {
+                        smo.encryptProcedures();
+                        smo.encryptFunctions();
+
+                        return "Ok";
+                    }
+                    else
+                        return "Bad";
                 }
                 else
                     return "Bad";
             };
-            Post["/getfiles"] = parameters =>
-            {
-                string dir = Request.Form.dir;
 
-                myConfig cfg = myConfig.getInstance();
-
-                if (dir.Equals("./"))
-                    dir = cfg.path;
-
-                dir = HttpUtility.UrlDecode(dir);
-
-                string strDir = "";
-
-                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(dir);
-                strDir = strDir + "<ul class=\"jqueryFileTree\" style=\"display: none;\">\n";
-
-                foreach (System.IO.DirectoryInfo di_child in di.GetDirectories())
-                    strDir = strDir + "\t<li class=\"directory collapsed\"><a href=\"#\" rel=\"" + dir + di_child.Name + "/\">" + di_child.Name + "</a></li>\n";
-
-                foreach (System.IO.FileInfo fi in di.GetFiles())
-                {
-                    string ext = "";
-                    if (fi.Extension.Length > 1)
-                        ext = fi.Extension.Substring(1).ToLower();
-
-                    strDir = strDir + "\t<li class=\"file ext_" + ext + "\"><a href=\"#\" rel=\"" + dir + fi.Name + "\">" + fi.Name + "</a></li>\n";
-                }
-
-                strDir = strDir + "</ul>";
-
-                return strDir;
-            };
-        
             Post["/getfiles"] = parameters =>
             {
                 string dir = Request.Form.dir;

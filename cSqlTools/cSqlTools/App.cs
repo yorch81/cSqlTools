@@ -5,6 +5,26 @@ using System.Text;
 using System.IO;
 using System.Data;
 
+/**
+ * App 
+ *
+ * App Init Application
+ *
+ * Copyright 2015 Jorge Alberto Ponce Turrubiates
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 namespace cSqlTools
 {
     /// <summary>
@@ -27,16 +47,17 @@ namespace cSqlTools
             string password = "";
             string dbName = "";
 
-            Console.WriteLine("Welcome to cqlTools on Console !!!");
-
-            Console.Write("Enter DataBase Type (1 SQL Server 2 MySQL): ");
-            dbType = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter Path to save Scripts: ");
-            path = Console.ReadLine();
-
+            // No arguments Console App
             if (args.Length != 0)
             {
+                Console.WriteLine("Welcome to cqlTools on Console !!!");
+
+                Console.Write("Enter DataBase Type (1 SQL Server 2 MySQL): ");
+                dbType = int.Parse(Console.ReadLine());
+
+                Console.Write("Enter Path to save Scripts: ");
+                path = Console.ReadLine();
+
                 Console.Write("Enter Server DataBase Name: ");
                 serverDb = Console.ReadLine();
 
@@ -89,6 +110,12 @@ namespace cSqlTools
             }
             else
             {
+                // Web Application
+                Console.WriteLine("Welcome to cqlTools Web !!!");
+
+                Console.Write("Enter Base Path to save Scripts: ");
+                path = Console.ReadLine();
+                
                 if ((Directory.Exists(path)))
                 {
                     myConfig cfg = myConfig.getInstance();

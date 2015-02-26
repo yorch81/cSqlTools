@@ -89,12 +89,13 @@
                 });
                 
                 $("#btn_connect").click(function(){
-                    $.post('/connect', {serverDb: $('#txtServer').val(), userDb: $('#txtUser').val(),
-                                        password: $('#txtPassword').val(), dbName: $('#txtDb').val()},
+                    $.post('/dblist', {serverDb: $('#txtServer').val(), userDb: $('#txtUser').val(),
+                                        password: $('#txtPassword').val(), dbType: $('#cmbConn').val()},
                                 function(response,status) {                                                                   
-                                    if (response == 'Ok') {
+                                    if (response != '') {
                                         $("#btn_encrypt").prop('disabled', false);
                                         $("#btn_save").prop('disabled', false);
+                                        $("#cmbDb").html(response);
                                     } 
                                     else {
                                         alert("Not Connected");
@@ -109,7 +110,7 @@
                 $("#btn_save").click(function(){
                     $('#processing-modal').modal('toggle');
 
-                    $.post('/save', {dir: $('#txtPath').val()},
+                    $.post('/save', {dbType: $('#cmbConn').val(), dir: $('#txtPath').val(), dbName: $('#cmbDb').val()},
                                 function(response,status) {                      
                                     if (response == 'Ok') {
                                         $('#processing-modal').modal('hide');
@@ -126,22 +127,30 @@
                 });
 
                 $("#btn_encrypt").click(function(){
-                    $('#processing-modal').modal('toggle');
+                    if ($('#cmbConn').val() == '1'){
+                        var resp = confirm("Want to encrypt Routines?");
+                        if (resp == true) {
+                            $('#processing-modal').modal('toggle');
 
-                    $.post('/encrypt', {},
-                                function(response,status) {                      
-                                    if (response == 'Ok') {
-                                        $('#processing-modal').modal('hide');
-                                        location.reload(true);
-                                    } 
-                                    else {
-                                        alert("Not Connected");
-                                    }
-                            }).error(
-                                function(){
-                                    console.log('Application not responding');
-                                }
-                            );
+                            $.post('/encrypt', {dbType: $('#cmbConn').val(), dbName: $('#cmbDb').val()},
+                                        function(response,status) {                      
+                                            if (response == 'Ok') {
+                                                $('#processing-modal').modal('hide');
+                                                location.reload(true);
+                                            } 
+                                            else {
+                                                alert("Not Connected");
+                                            }
+                                    }).error(
+                                        function(){
+                                            console.log('Application not responding');
+                                        }
+                                    );
+                        }
+                    }
+                    else
+                        alert("MySQL Encryption not Supported");
+                    
                 });
             });
         </script>
@@ -161,7 +170,15 @@
             <div class="row">
                 <div "col-xs-6 col-md-6 col-sm-12 col-xs-12">
                     <div id="lytConn" class="example">
-                        <h4>Connection Data</h4>
+                        <center>
+                            <h4>Connection Data</h4>
+                        </center>
+
+                        <label for="cmbConn">Connection Type:</label>
+                        <select id="cmbConn" class="form-control">
+                            <option value="1" selected>SQL Server</option>
+                            <option value="2">MySQL</option>
+                        </select>
 
                         <input id="txtServer" type="text" class="form-control" placeholder="DataBase Server" name="txtServer" required>
 
@@ -169,11 +186,13 @@
 
                         <input id="txtPassword" type="password" class="form-control" placeholder="Password" name="txtPassword" required>
 
-                        <input id="txtDb" type="text" class="form-control" placeholder="DataBase Name" name="txtDb" required>
+                        <button id="btn_connect" class="btn btn-lg btn-success btn-block">DataBases</button>
 
-                        <button id="btn_connect" class="btn btn-lg btn-primary btn-block">Connect</button>
+                        <label for="cmbDb">DataBases:</label>
+                        <select id="cmbDb" class="form-control">
+                        </select>
 
-                        <button id="btn_encrypt" class="btn btn-lg btn-primary btn-block" disabled>Encrypt</button>
+                        <button id="btn_encrypt" class="btn btn-lg btn btn-danger btn-block" disabled>Encrypt</button>
                     </div>
                 </div>
 

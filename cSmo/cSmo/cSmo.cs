@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 /**
  * cSmo 
  *
- * cSmo Implementation of SMO Singleton
+ * cSmo Implementation of SMO Factory
  *
  * Copyright 2015 Jorge Alberto Ponce Turrubiates
  *
@@ -29,7 +29,7 @@ using System.Data.SqlClient;
 namespace cSmo
 {
     /// <summary>
-    /// SMO Singleton Class
+    /// SMO Factory Class
     /// </summary>
     public class cSmo
     {
@@ -85,7 +85,7 @@ namespace cSmo
         }
 
         /// <summary>
-        /// Gets a Singleton Instance
+        /// Gets a Factory Instance
         /// </summary>
         /// <param name="connType">
         /// 1 MSSQLSERVER 2 MYSQL

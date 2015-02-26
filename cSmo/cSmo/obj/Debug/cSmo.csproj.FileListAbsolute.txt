@@ -34,3 +34,4 @@ C:\Code\BitBucket\cSharp\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.d
 C:\Code\BitBucket\cSharp\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
 C:\Code\BitBucket\cSharp\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
 C:\Code\BitBucket\cSharp\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb
+C:\Code\BitBucket\cSharp\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.csprojResolveAssemblyReference.cache
