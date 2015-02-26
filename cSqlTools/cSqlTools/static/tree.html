@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>cs SQL Tools Web</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="cs SQL Tools">
+        <meta name="author" content="Jorge Alberto Ponce Turrubiates">
+        
+        <style type="text/css">
+            .body {
+                min-height: 2000px;
+            }
+
+            .navbar-static-top {
+                margin-bottom: 19px;
+            }
+
+            .navbar {
+                min-height:124px;
+            }
+
+            .bsnavbar {
+                margin-bottom: 19px;
+                min-height:124px;
+            }
+            
+            .example {
+                float: left;
+                margin: 15px;
+            }
+            
+            .file_explorer {
+                width: 300px;
+                height: 300px;
+                border-top: solid 1px #BBB;
+                border-left: solid 1px #BBB;
+                border-bottom: solid 1px #FFF;
+                border-right: solid 1px #FFF;
+                background: #FFF;
+                overflow: scroll;
+                padding: 5px;
+            }
+
+            .modal-static { 
+                position: fixed;
+                top: 50% !important; 
+                left: 50% !important; 
+                margin-top: -100px;  
+                margin-left: -100px; 
+                overflow: visible !important;
+            }
+
+            .modal-static,
+            .modal-static .modal-dialog,
+            .modal-static .modal-content {
+                width: 200px; 
+                height: 200px; 
+            }
+
+            .modal-static .modal-dialog,
+            .modal-static .modal-content {
+                padding: 0 !important; 
+                margin: 0 !important;
+            }
+
+            .modal-static .modal-content .icon {
+            }
+        </style>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>   
+        <script src="http://cdn.v3ctor.club/jQueryFileTree-master/jqueryFileTree.js" type="text/javascript"></script>
+        <link href="http://cdn.v3ctor.club/jQueryFileTree-master/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript"> 
+                    
+            $(document).ready( function() {                             
+                $('#explorer').fileTree({ root: './', script: '/getfiles', folderEvent: 'click', expandSpeed: 750, collapseSpeed: 750, multiFolder: false }, function(file) { 
+                    file = file.substring(2);
+                });
+            
+                $('#explorer').on('filetreeexpand', 
+                        function (e, data){
+                            $('#txtPath').val(data.rel);
+                });
+                
+                $("#btn_connect").click(function(){
+                    $.post('/connect', {serverDb: $('#txtServer').val(), userDb: $('#txtUser').val(),
+                                        password: $('#txtPassword').val(), dbName: $('#txtDb').val()},
+                                function(response,status) {                                                                   
+                                    if (response == 'Ok') {
+                                        $("#btn_encrypt").prop('disabled', false);
+                                        $("#btn_save").prop('disabled', false);
+                                    } 
+                                    else {
+                                        alert("Not Connected");
+                                    }
+                            }).error(
+                                function(){
+                                    console.log('Application not responding');
+                                }
+                            );
+                });
+
+                $("#btn_save").click(function(){
+                    $('#processing-modal').modal('toggle');
+
+                    $.post('/save', {dir: $('#txtPath').val()},
+                                function(response,status) {                      
+                                    if (response == 'Ok') {
+                                        $('#processing-modal').modal('hide');
+                                        location.reload(true);
+                                    } 
+                                    else {
+                                        alert("Not Connected");
+                                    }
+                            }).error(
+                                function(){
+                                    console.log('Application not responding');
+                                }
+                            );
+                });
+
+                $("#btn_encrypt").click(function(){
+                    $('#processing-modal').modal('toggle');
+
+                    $.post('/encrypt', {},
+                                function(response,status) {                      
+                                    if (response == 'Ok') {
+                                        $('#processing-modal').modal('hide');
+                                        location.reload(true);
+                                    } 
+                                    else {
+                                        alert("Not Connected");
+                                    }
+                            }).error(
+                                function(){
+                                    console.log('Application not responding');
+                                }
+                            );
+                });
+            });
+        </script>
+
+    </head>
+    
+    <body>
+        <div class="navbar navbar-default navbar-static-top bsnavbar">
+          <div class="container">
+            <div class="navbar-header">
+              <h1>cs SQL Tools</h1>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div "col-xs-6 col-md-6 col-sm-12 col-xs-12">
+                    <div id="lytConn" class="example">
+                        <h4>Connection Data</h4>
+
+                        <input id="txtServer" type="text" class="form-control" placeholder="DataBase Server" name="txtServer" required>
+
+                        <input id="txtUser" type="text" class="form-control" placeholder="DataBase User" name="txtUser" required>
+
+                        <input id="txtPassword" type="password" class="form-control" placeholder="Password" name="txtPassword" required>
+
+                        <input id="txtDb" type="text" class="form-control" placeholder="DataBase Name" name="txtDb" required>
+
+                        <button id="btn_connect" class="btn btn-lg btn-primary btn-block">Connect</button>
+
+                        <button id="btn_encrypt" class="btn btn-lg btn-primary btn-block" disabled>Encrypt</button>
+                    </div>
+                </div>
+
+                <div id="lytPath" class="example">
+                    <label for="txtPath">Selected Path:</label>
+                    <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" value = "@Model.path" required disabled>
+                                                                
+                    <div id="explorer" class="file_explorer"></div>
+                    
+                    <button id="btn_save" class="btn btn-lg btn-primary btn-block" disabled>Save Scripts</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Static Modal -->
+        <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-body">
+                        <div class="text-center">
+                            <img src="/static/img/processing.gif" class="icon" />
+                            <h5 id="label-process">Processing... 
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

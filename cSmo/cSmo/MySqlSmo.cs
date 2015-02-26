@@ -118,12 +118,18 @@ namespace cSmo
         /// <summary>
         /// Save DDL Scripts of Stored Procedures
         /// </summary>
+        /// <param name="dir">
+        /// Optional Dir
+        /// </param>
         /// <returns>
         /// 0 successful 1 Directory not Exists 2 Not Connected 3 DataBase not Exists
         /// </returns>
-        public override int saveProcedures()
+        public override int saveProcedures(string dir = "")
         {
             int retValue = 0;
+
+            if (dir.Length > 0)
+                this.basedir = dir;
 
             if (!(Directory.Exists(basedir)))
                 retValue = 1;
@@ -154,12 +160,18 @@ namespace cSmo
         /// <summary>
         /// Save DDL Scripts of User Functions
         /// </summary>
+        /// <param name="dir">
+        /// Optional Dir
+        /// </param>
         /// <returns>
         /// 0 successful 1 Directory not Exists 2 Not Connected 3 DataBase not Exists
         /// </returns>
-        public override int saveFunctions()
+        public override int saveFunctions(string dir = "")
         {
             int retValue = 0;
+
+            if (dir.Length > 0)
+                this.basedir = dir;
 
             if (!(Directory.Exists(basedir)))
                 retValue = 1;
@@ -190,12 +202,18 @@ namespace cSmo
         /// <summary>
         /// Save DDL Scripts of User Tables
         /// </summary>
+        /// <param name="dir">
+        /// Optional Dir
+        /// </param>
         /// <returns>
         /// 0 successful 1 Directory not Exists 2 Not Connected 3 DataBase not Exists
         /// </returns>
-        public override int saveTables()
+        public override int saveTables(string dir = "")
         {
             int retValue = 0;
+
+            if (dir.Length > 0)
+                this.basedir = dir;
 
             if (!(Directory.Exists(basedir)))
                 retValue = 1;

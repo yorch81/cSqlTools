@@ -59,26 +59,35 @@ namespace cSmo
         /// <summary>
         /// Save DDL Scripts of Stored Procedures
         /// </summary>
+        /// <param name="dir">
+        /// Optional Dir
+        /// </param>
         /// <returns>
         /// int
         /// </returns>
-        public abstract int saveProcedures();
+        public abstract int saveProcedures(string dir = "");
 
         /// <summary>
         /// Save DDL Scripts of User Functions
         /// </summary>
+        /// <param name="dir">
+        /// Optional Dir
+        /// </param>
         /// <returns>
         /// int
         /// </returns>
-        public abstract int saveFunctions();
+        public abstract int saveFunctions(string dir = "");
 
         /// <summary>
         /// Save DDL Scripts of User Tables
         /// </summary>
+        /// <param name="dir">
+        /// Optional Dir
+        /// </param>
         /// <returns>
         /// int
         /// </returns>
-        public abstract int saveTables();
+        public abstract int saveTables(string dir = "");
 
         /// <summary>
         /// Gets a DataSet with DataBases List
