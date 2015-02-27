@@ -48,7 +48,7 @@ namespace cSqlTools
             string dbName = "";
 
             // No arguments Console App
-            if (args.Length != 0)
+            if (args.Length == 0)
             {
                 Console.WriteLine("Welcome to cqlTools on Console !!!");
 

@@ -95,9 +95,6 @@
     <Content Include="static\img\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="static\img\nancy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="static\img\processing.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
