@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Data;
 
 /**
  * App 
@@ -48,7 +44,7 @@ namespace cSqlTools
             string dbName = "";
 
             // No arguments Console App
-            if (args.Length == 0)
+            if (args.Length != 0)
             {
                 Console.WriteLine("Welcome to cqlTools on Console !!!");
 
