@@ -42,5 +42,6 @@ C:\Code\GitHub\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.ConnectionInfo.
 C:\Code\GitHub\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
 C:\Code\GitHub\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.dll
 C:\Code\GitHub\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
+C:\Code\GitHub\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.csprojResolveAssemblyReference.cache
 C:\Code\GitHub\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
 C:\Code\GitHub\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb
