@@ -32,7 +32,7 @@ namespace cSqlTools
         /// Init Method
         /// </summary>
         /// <param name="args">
-        /// web For Init Web Application
+        /// web or any string for start Web Application
         /// </param>
         static void Main(string[] args)
         {
@@ -44,7 +44,7 @@ namespace cSqlTools
             string dbName = "";
 
             // No arguments Console App
-            if (args.Length != 0)
+            if (args.Length == 0)
             {
                 Console.WriteLine("Welcome to cqlTools on Console !!!");
 
