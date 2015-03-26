@@ -24,6 +24,13 @@ Microsoft.SqlServer.ConnectionInfo.dll
 ## References ##
 http://es.wikipedia.org/wiki/Abstract_Factory
 
+## Environment Test ##
+- Windows 8 Enterprise x64
+- .NET Framework 4.5
+- Microsoft SQL Server 2014
+
+P.D. Let's go play !!!
+
 
 
 

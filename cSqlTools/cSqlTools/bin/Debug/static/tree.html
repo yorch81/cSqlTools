@@ -71,13 +71,107 @@
             }
         </style>
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
         <script src="http://cdn.v3ctor.club/jQueryFileTree-master/jqueryFileTree.js" type="text/javascript"></script>
         <link href="http://cdn.v3ctor.club/jQueryFileTree-master/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
+    </head>
+    
+    <body>
+        <div class="navbar navbar-default navbar-static-top bsnavbar">
+          <div class="container">
+            <div class="navbar-header">
+              <h2>cs SQL Tools</h2>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active" id="btn_credits"><a href="#">Credits<span class="sr-only">(current)</span></a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div "col-xs-6 col-md-6 col-sm-12 col-xs-12">
+                    <div id="lytConn" class="example">
+                        <center>
+                            <h4>Connection Data</h4>
+                        </center>
+
+                        <label for="cmbConn">Connection Type:</label>
+                        <select id="cmbConn" class="form-control">
+                            <option value="1" selected>SQL Server</option>
+                            <option value="2">MySQL</option>
+                        </select>
+
+                        <input id="txtServer" type="text" class="form-control" placeholder="DataBase Server" name="txtServer" required>
+
+                        <input id="txtUser" type="text" class="form-control" placeholder="DataBase User" name="txtUser" required>
+
+                        <input id="txtPassword" type="password" class="form-control" placeholder="Password" name="txtPassword" required>
+
+                        <button id="btn_connect" class="btn btn-lg btn-success btn-block">DataBases</button>
+
+                        <label for="cmbDb">DataBases:</label>
+                        <select id="cmbDb" class="form-control">
+                        </select>
+
+                        <button id="btn_encrypt" class="btn btn-lg btn btn-danger btn-block" disabled>Encrypt</button>
+                    </div>
+                </div>
+
+                <div id="lytPath" class="example">
+                    <label for="txtPath">Selected Path:</label>
+                    <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" value = "@Model.path" required disabled>
+                                                                
+                    <div id="explorer" class="file_explorer"></div>
+                    
+                    <button id="btn_save" class="btn btn-lg btn-primary btn-block" disabled>Save Scripts</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Static Modal Restore Data -->
+        <div class="modal fade" id="window-credits" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Credits</h4>
+                     </div>
+
+                    <div class="modal-body">
+                        <center>
+                            <p><h3>Jorge Alberto Ponce Turrubiates</h3></p>
+                            <p><h5><a href="mailto:the.yorch@gmail.com<">the.yorch@gmail.com</a></h5></p>
+                            <p><h5><a href="http://the-yorch.blogspot.mx/">Blog</a></h5></p>
+                            <p><h5><a href="https://bitbucket.org/yorch81">BitBucket</a></h5></p>
+                            <p><h5><a href="https://github.com/yorch81">GitHub</a></h5></p>
+                            <p></p>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Static Modal -->
+        <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-body">
+                        <div class="text-center">
+                            <img src="/static/img/processing.gif" class="icon" />
+                            <h5 id="label-process">Processing... 
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script type="text/javascript"> 
                     
@@ -161,101 +255,6 @@
                 });
             });
         </script>
-
-    </head>
-    
-    <body>
-        <div class="navbar navbar-default navbar-static-top bsnavbar">
-          <div class="container">
-            <div class="navbar-header">
-              <h2>cs SQL Tools</h2>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active" id="btn_credits"><a href="#">Credits<span class="sr-only">(current)</span></a></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="container">
-            <div class="row">
-                <div "col-xs-6 col-md-6 col-sm-12 col-xs-12">
-                    <div id="lytConn" class="example">
-                        <center>
-                            <h4>Connection Data</h4>
-                        </center>
-
-                        <label for="cmbConn">Connection Type:</label>
-                        <select id="cmbConn" class="form-control">
-                            <option value="1" selected>SQL Server</option>
-                            <option value="2">MySQL</option>
-                        </select>
-
-                        <input id="txtServer" type="text" class="form-control" placeholder="DataBase Server" name="txtServer" required>
-
-                        <input id="txtUser" type="text" class="form-control" placeholder="DataBase User" name="txtUser" required>
-
-                        <input id="txtPassword" type="password" class="form-control" placeholder="Password" name="txtPassword" required>
-
-                        <button id="btn_connect" class="btn btn-lg btn-success btn-block">DataBases</button>
-
-                        <label for="cmbDb">DataBases:</label>
-                        <select id="cmbDb" class="form-control">
-                        </select>
-
-                        <button id="btn_encrypt" class="btn btn-lg btn btn-danger btn-block" disabled>Encrypt</button>
-                    </div>
-                </div>
-
-                <div id="lytPath" class="example">
-                    <label for="txtPath">Selected Path:</label>
-                    <input id="txtPath" type="text" class="form-control" placeholder="Path" name="txtPath" value = "@Model.path" required disabled>
-                                                                
-                    <div id="explorer" class="file_explorer"></div>
-                    
-                    <button id="btn_save" class="btn btn-lg btn-primary btn-block" disabled>Save Scripts</button>
-                </div>
-            </div>
-            
-        </div>
-        
-        <!-- Static Modal Restore Data -->
-        <div class="modal fade" id="window-credits" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Credits</h4>
-                     </div>
-
-                    <div class="modal-body">
-                        <center>
-                            <p><h3>Jorge Alberto Ponce Turrubiates</h3></p>
-                            <p><h5><a href="mailto:the.yorch@gmail.com<">the.yorch@gmail.com</a></h5></p>
-                            <p><h5><a href="http://the-yorch.blogspot.mx/">Blog</a></h5></p>
-                            <p><h5><a href="https://bitbucket.org/yorch81">BitBucket</a></h5></p>
-                            <p><h5><a href="https://github.com/yorch81">GitHub</a></h5></p>
-                            <p></p>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Static Modal -->
-        <div class="modal fade" id="processing-modal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                   <div class="modal-body">
-                        <div class="text-center">
-                            <img src="/static/img/processing.gif" class="icon" />
-                            <h5 id="label-process">Processing... 
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </body>
 </html>
