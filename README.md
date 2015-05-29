@@ -21,7 +21,7 @@ For install dependencies, please run: Update-package -reinstall
 This application is a Tool and uses a SQL Server libraries included in the installation.
 Microsoft.SqlServer.ConnectionInfo.dll
 Microsoft.SqlServer.Management.Sdk.Sfc.dll
-Microsoft.SqlServer.ConnectionInfo.dll
+Microsoft.SqlServer.Smo.dll
 
 The encryption of routines is not supported in MySQL.
 

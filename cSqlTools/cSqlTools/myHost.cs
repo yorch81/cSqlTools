@@ -38,11 +38,20 @@ namespace cSqlTools
         {
             string url = "http://localhost:" + port;
 
-            HostConfiguration config = new HostConfiguration();
-            config.UrlReservations.CreateAutomatically = true;
-            config.UrlReservations.User = "Everyone";
+			NancyHost host = null;
 
-            NancyHost host = new NancyHost(config, new Uri(url));
+			// If is Windows requires Administrator Permissions
+			if (System.Environment.OSVersion.ToString ().Contains ("Windows")) {
+				HostConfiguration config = new HostConfiguration();
+				config.UrlReservations.CreateAutomatically = true;
+				config.UrlReservations.User = "Everyone";
+
+				host = new NancyHost(config, new Uri(url));
+			} 
+			else 
+			{
+				host = new NancyHost(new Uri(url));
+			}
 
             host.Start();
 
