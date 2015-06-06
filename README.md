@@ -18,20 +18,15 @@ Run EXE file cSqlTools.exe or cSqlTools.exe web to start web application.
 ## Notes ##
 For install dependencies, please run: Update-package -reinstall
 
-This application is a Tool and uses a SQL Server libraries included in the installation.
-Microsoft.SqlServer.ConnectionInfo.dll
-Microsoft.SqlServer.Management.Sdk.Sfc.dll
-Microsoft.SqlServer.Smo.dll
-
 The encryption of routines is not supported in MySQL.
 
 ## References ##
 http://es.wikipedia.org/wiki/Abstract_Factory
 
 ## Environment Test ##
-- Windows 8 Enterprise x64
+- Windows 7 Ultimate SP1
 - .NET Framework 4.5
-- Microsoft SQL Server 2014
+- Microsoft SQL Server 2008
 
 P.D. Let's go play !!!
 

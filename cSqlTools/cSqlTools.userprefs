@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="cSqlTools/myHost.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="cSqlTools/static/tree.html">
     <Files>
-      <File FileName="cSqlTools/myHost.cs" Line="50" Column="6" />
+      <File FileName="cSqlTools/static/tree.html" Line="77" Column="88" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
