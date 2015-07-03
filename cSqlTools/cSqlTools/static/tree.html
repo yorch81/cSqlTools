@@ -35,7 +35,7 @@
             
             .file_explorer {
                 width: 300px;
-                height: 250px;
+                height: 270px;
                 border-top: solid 1px #BBB;
                 border-left: solid 1px #BBB;
                 border-bottom: solid 1px #FFF;
@@ -75,7 +75,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+		
         <script src="http://cdn.3utilities.com/jquery-filetree/jqueryFileTree.js" type="text/javascript"></script>
         <link href="http://cdn.3utilities.com/jquery-filetree/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
@@ -98,7 +99,7 @@
                 <div "col-xs-6 col-md-6 col-sm-12 col-xs-12">
                     <div id="lytConn" class="example">
                         <center>
-                            <h4>Connection Data</h4>
+                            <h4>Connection Settings</h4>
                         </center>
 
                         <label for="cmbConn">Connection Type:</label>
@@ -112,13 +113,13 @@
                         <input id="txtUser" type="text" class="form-control" placeholder="DataBase User" name="txtUser" required>
 
                         <input id="txtPassword" type="password" class="form-control" placeholder="Password" name="txtPassword" required>
-
+						
                         <button id="btn_connect" class="btn btn-lg btn-success btn-block">DataBases</button>
-
+						<br>
                         <label for="cmbDb">DataBases:</label>
                         <select id="cmbDb" class="form-control">
                         </select>
-
+						
                         <button id="btn_encrypt" class="btn btn-lg btn btn-danger btn-block" disabled>Encrypt</button>
                     </div>
                 </div>
@@ -195,7 +196,7 @@
                                         $("#cmbDb").html(response);
                                     } 
                                     else {
-                                        alert("Not Connected");
+                                        bootbox.alert("Not Connected");
                                     }
                             }).error(
                                 function(){
@@ -214,7 +215,7 @@
                                         location.reload(true);
                                     } 
                                     else {
-                                        alert("Not Connected");
+                                        bootbox.alert("Not Connected");
                                     }
                             }).error(
                                 function(){
@@ -225,28 +226,31 @@
 
                 $("#btn_encrypt").click(function(){
                     if ($('#cmbConn').val() == '1'){
-                        var resp = confirm("Want to encrypt Routines?");
-                        if (resp == true) {
-                            $('#processing-modal').modal('toggle');
+                    	bootbox.confirm("Want to encrypt Routines?", 
+						function(result){
+							if (result) {
+								$('#processing-modal').modal('toggle');
 
-                            $.post('/encrypt', {dbType: $('#cmbConn').val(), dbName: $('#cmbDb').val()},
-                                        function(response,status) {                      
-                                            if (response == 'Ok') {
-                                                $('#processing-modal').modal('hide');
-                                                location.reload(true);
-                                            } 
-                                            else {
-                                                alert("Not Connected");
-                                            }
-                                    }).error(
-                                        function(){
-                                            console.log('Application not responding');
-                                        }
-                                    );
-                        }
+	                            $.post('/encrypt', {dbType: $('#cmbConn').val(), dbName: $('#cmbDb').val()},
+	                                        function(response,status) {                      
+	                                            if (response == 'Ok') {
+	                                                $('#processing-modal').modal('hide');
+	                                                location.reload(true);
+	                                            } 
+	                                            else {
+	                                                bootbox.alert("Not Connected");
+	                                            }
+	                                    }).error(
+	                                        function(){
+	                                            console.log('Application not responding');
+	                                        }
+	                                    );
+							}
+						});
+                 
                     }
                     else
-                        alert("MySQL Encryption not Supported");
+                        bootbox.alert("MySQL Encryption not Supported");
                     
                 });
 
