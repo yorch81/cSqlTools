@@ -3,3 +3,5 @@
 *.exe
 *.dll
 *.cache
+*.nuspec
+*.json

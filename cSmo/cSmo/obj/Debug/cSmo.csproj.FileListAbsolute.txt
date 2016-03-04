@@ -1,12 +1,3 @@
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll.config
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.pdb
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.dll
-C:\Code\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
-C:\Code\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
-C:\Code\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb
 C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll.config
 C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll
 C:\Code\cs\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.pdb
@@ -53,3 +44,14 @@ C:\Projects\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.dll
 C:\Projects\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
 C:\Projects\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
 C:\Projects\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll.config
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.dll
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\cSmo.pdb
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.SmoExtended.dll
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+C:\CODE\cSqlTools\cSmo\cSmo\bin\Debug\MySql.Data.dll
+C:\CODE\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.dll
+C:\CODE\cSqlTools\cSmo\cSmo\obj\Debug\cSmo.pdb

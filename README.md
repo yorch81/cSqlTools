@@ -1,7 +1,7 @@
 # cs SQL Tools #
 
 ## Description ##
-.Net Application to Encryption and Backup Code for SQL Server and MySQL.
+.Net Application to Encryption and Backup Routines for SQL Server and MySQL.
 
 ## Requirements ##
 * [.NET Framework](http://www.microsoft.com/es-mx/download/details.aspx?id=30653)
