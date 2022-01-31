@@ -165,26 +165,81 @@ namespace cSqlTools
             }
             else
             {
-                // Web Application
-                Console.WriteLine("Welcome to cqlTools Web !!!");
+                string paraction = args[0];
 
-                Console.Write("Enter Base Path to save Scripts: ");
-                path = Console.ReadLine();
-
-                Console.Write("Enter Application Port: ");
-                string strPort = Console.ReadLine();
-
-                if ((Directory.Exists(path)))
+                if (paraction.Equals("run"))
                 {
-                    myConfig cfg = myConfig.getInstance();
-                    cfg.CurrentDir = Environment.CurrentDirectory.Replace("\\", "/");
-                    cfg.path = path;
-                    cfg.dbType = dbType;
+                    string cfgFile = args[1];
 
-                    new myHost(Int32.Parse(strPort));
+                    JConfig.JConfig cfg = new JConfig.JConfig(cfgFile);
+
+                    if (cfg.totalKeys() > 0)
+                    {
+                        Console.WriteLine("Running " + cfgFile);
+
+                        dbType = Int32.Parse(cfg.getValue("dbType"));
+                        path = cfg.getValue("path");
+                        serverDb = cfg.getValue("serverDb");
+                        userDb = cfg.getValue("userDb");
+                        password = cfg.getValue("password");
+                        dbName = cfg.getValue("dbName");
+                        int action = Int32.Parse(cfg.getValue("action"));
+
+                        cSmo.cSmo smo;
+
+                        if (dbType == 1)
+                            smo = cSmo.cSmo.getInstance(cSmo.cSmo.MSSQLSERVER, path, serverDb, userDb, password, dbName);
+                        else
+                            smo = cSmo.cSmo.getInstance(cSmo.cSmo.MYSQL, path, serverDb, userDb, password, dbName);
+
+                        if (smo.isConnected())
+                        {
+                            if (action == 1)
+                            {
+                                if ((Directory.Exists(path)))
+                                {
+                                    Console.WriteLine("Saving DDL Scripts on: " + path);
+                                    smo.saveTables();
+                                    smo.saveProcedures();
+                                    smo.saveFunctions();
+                                }
+                                else
+                                    Console.WriteLine("The Path not Exists");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Encrypting Routines of SQL Server (MySQL not Support)");
+                                smo.encryptProcedures();
+                                smo.encryptFunctions();
+                            }
+                        }
+                        else
+                            Console.WriteLine("Could not connect to DataBase Server");
+                    }
                 }
                 else
-                    Console.WriteLine("Path doesn't Exists.");
+                {
+                    // Web Application
+                    Console.WriteLine("Welcome to cqlTools Web !!!");
+
+                    Console.Write("Enter Base Path to save Scripts: ");
+                    path = Console.ReadLine();
+
+                    Console.Write("Enter Application Port: ");
+                    string strPort = Console.ReadLine();
+
+                    if ((Directory.Exists(path)))
+                    {
+                        myConfig webcfg = myConfig.getInstance();
+                        webcfg.CurrentDir = Environment.CurrentDirectory.Replace("\\", "/");
+                        webcfg.path = path;
+                        webcfg.dbType = dbType;
+
+                        new myHost(Int32.Parse(strPort));
+                    }
+                    else
+                        Console.WriteLine("Path doesn't Exists.");
+                }
             }
         }
     }
