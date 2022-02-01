@@ -13,7 +13,7 @@
 In the Code.
 
 ## Installation ##
-Run EXE file cSqlTools.exe or cSqlTools.exe web to start web application.
+Run EXE file cSqlTools.exe,  cSqlTools.exe run config_file.json or cSqlTools.exe web to start web application.
 
 ## Notes ##
 For install dependencies, please run: Update-package -reinstall
